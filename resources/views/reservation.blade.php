@@ -57,6 +57,7 @@ $reservation = Reservation::all();
                         <th scope="col">Telepon</th>
                         <th scope="col">Alamat</th>
                         <th scope="col">Acara</th>
+                        <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -69,6 +70,14 @@ $reservation = Reservation::all();
                         <td class="min-w-[7rem]">
                             @if ($item->akad) <li>Akad</li> @endif
                             @if ($item->resepsi) <li>Resepsi</li> @endif
+                        </td>
+                        <td class="d-flex">
+                            <form action="{{ route('reservation.destroy', ['reservation' => $item->id]) }}" method="POST">
+                                @csrf
+                                @method('delete')
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                            <a href="#" class="btn btn-warning ml-1">Edit</a>
                         </td>
                     </tr>
                     @endforeach
