@@ -16,9 +16,9 @@ class GiftMail extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($newGift)
     {
-        //
+        $this->gift = $newGift;
     }
 
     /**
@@ -28,6 +28,7 @@ class GiftMail extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        $gift = $this->gift;
+        return $this->view('email.gift', compact('gift'));
     }
 }

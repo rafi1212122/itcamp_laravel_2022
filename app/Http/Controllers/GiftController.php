@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Gift;
 use Illuminate\Http\Request;
+use App\Mail\GiftMail;
+use Illuminate\Support\Facades\Mail;
 
 class GiftController extends Controller
 {
@@ -45,12 +47,14 @@ class GiftController extends Controller
         
         $path = $request->file->storePubliclyAs('files', time().auth()->id().'.'.$request->file->getClientOriginalExtension());
 
-        Gift::create([
+        $newGift = Gift::create([
             'pesan' => $request->pesan,
             'user_id' => auth()->id(),
             'file' => $path
         ]);
-        
+
+        Mail::to('rafi1212122@outlook.com')->send(new GiftMail($newGift));
+
         return redirect()->route('give');
     }
 
