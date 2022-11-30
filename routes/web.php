@@ -29,6 +29,10 @@ Route::post('/reservation', [ReservationController::class, 'store'])->middleware
 
 Route::delete('/reservation/{reservation}', [ReservationController::class, 'destroy'])->middleware(['auth'])->name('reservation.destroy');
 
+Route::get('/reservation/{reservation}', [ReservationController::class, 'edit'])->middleware(['auth'])->name('reservation.edit');
+
+Route::put('/reservation/{reservation}', [ReservationController::class, 'update'])->middleware(['auth'])->name('reservation.update');
+
 Route::get('/give', [GiftController::class, 'index'])->middleware(['auth'])->name('give');
 
 Route::post('/give', [GiftController::class, 'store'])->middleware(['auth'])->name('give.store');

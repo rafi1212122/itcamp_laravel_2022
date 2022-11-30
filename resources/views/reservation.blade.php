@@ -77,7 +77,7 @@ $reservation = Reservation::all();
                                 @method('delete')
                                 <button type="submit" class="btn btn-danger">Delete</button>
                             </form>
-                            <a href="#" class="btn btn-warning ml-1">Edit</a>
+                            <a href="{{ route('reservation.edit', ['reservation' => $item->id]) }}" class="btn btn-warning ml-1">Edit</a>
                         </td>
                     </tr>
                     @endforeach

@@ -70,9 +70,9 @@ class ReservationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Reservation $reservation)
     {
-        //
+        return view('reservation_edit', compact('reservation'));
     }
 
     /**
@@ -82,9 +82,16 @@ class ReservationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Reservation $reservation)
     {
-        //
+        $reservation->update([
+            'tel' => $request->tel,
+            'alamat' => $request->alamat,
+            'akad' => !!$request->akad,
+            'resepsi' => !!$request->resepsi,
+        ]);
+
+        return redirect()->route('reservation');
     }
 
     /**
